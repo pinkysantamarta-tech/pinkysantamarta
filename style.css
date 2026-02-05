@@ -177,7 +177,25 @@ nav a {
 .checkout-btn:hover {
     background-color: #45a049;
 }
+.btn-agregar {
+  display: block;
+  background: linear-gradient(135deg, #e91e63, #c2185b);
+  color: white;
+  padding: 12px;
+  border-radius: 25px;
+  text-decoration: none; /* Sin subrayado */
+  font-weight: bold;
+  margin-top: 12px;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.btn-agregar:hover {
+  background: linear-gradient(135deg, #c2185b, #880e4f);
+  transform: scale(1.05);
+}
 </style>
+
 
 
 
