@@ -183,8 +183,7 @@
   <h3>Lubricante Íntimo Estrechante x 30 ml by Sen Íntimo</h3>
   <p>Lubricante Íntimo Estrechante x 30 ml by Sen Íntimo</p>
   <p class="precio"><strong>$36.900</strong></p>
-  
-  <a class="btn-comprar"
+    <a class="btn-comprar"
      href="https://wa.me/573115671324?text=Hola,%20quiero%20comprar%20el%20Lubricante%20Íntimo%20Estrechante%20sen%20intimo%20Power
      target="_blank"
      style="display: inline-block; padding: 10px 20px; background-color: #25d366; color: white; text-decoration: none; border-radius: 5px;">
@@ -199,28 +198,13 @@
 <section id="carrito">
   <h2>Tu Carrito</h2>
   <div class="cart">
-    <ul class="cart-items">
-      <li class="cart-item">
-        <span class="item-name">Huevo Vibrador</span>
-        <span class="item-price">$80.000</span>
-        <button class="remove-btn">Eliminar</button>
-      </li>
-      <li class="cart-item">
-        <span class="item-name">Mini Dildo Archer</span>
-        <span class="item-price">$28.000</span>
-        <button class="remove-btn">Eliminar</button>
-      </li>
-      <!-- Puedes añadir más productos aquí -->
-    </ul>
+    <ul class="cart-items" id="cart-items"></ul>
     <div class="cart-total">
       <span>Total:</span>
-      <span class="total-price">$108.000</span>
+      <span class="total-price" id="total-price">$0</span>
     </div>
     <button class="checkout-btn">Pagar</button>
   </div>
-</section>
-
-</div>
 </section>
 
 <section id="nosotros">
@@ -241,34 +225,66 @@
 <footer>
   <p> Pinky Santa Marta</p>
 </footer>
-<!-- ... otro contenido arriba ... -->
 
-</section>
-<footer>
-<p> Pinky Santa Marta</p>
-</footer>
-
-<!-- Aquí es donde pegas el script, justo antes de cerrar el body -->
 <script>
-  function cambiarImagen(idImagen, rutaNueva) {
-    document.getElementById(idImagen).src = rutaNueva;
+  const carrito = [];
+  const cartItemsContainer = document.getElementById('cart-items');
+  const totalPriceElement = document.getElementById('total-price');
+
+  // Función para actualizar el carrito visual
+  function actualizarCarrito() {
+    cartItemsContainer.innerHTML = '';
+    let total = 0;
+    carrito.forEach((producto, index) => {
+      const li = document.createElement('li');
+      li.className = 'cart-item';
+      li.innerHTML = `
+        <span class="item-name">${producto.nombre}</span>
+        <span class="item-price">$${producto.precio}</span>
+        <button class="eliminar-item" data-index="${index}">Eliminar</button>
+      `;
+      cartItemsContainer.appendChild(li);
+      total += producto.precio;
+    });
+    totalPriceElement.textContent = `$${total.toFixed(2)}`;
   }
+
+  // Evento para agregar productos
+  document.querySelectorAll('.btn-agregar').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const nombre = btn.getAttribute('data-nombre');
+      const precio = parseFloat(btn.getAttribute('data-precio'));
+      carrito.push({ nombre, precio });
+      actualizarCarrito();
+    });
+  });
+
+  // Evento para eliminar productos
+  document.getElementById('cart-items').addEventListener('click', e => {
+    if (e.target.classList.contains('eliminar-item')) {
+      const index = parseInt(e.target.getAttribute('data-index'));
+      carrito.splice(index, 1);
+      actualizarCarrito();
+    }
+  });
+
+  // Botón de pagar
+  document.querySelector('.checkout-btn').addEventListener('click', () => {
+    if (carrito.length === 0) {
+      alert('Tu carrito está vacío.');
+      return;
+    }
+    let mensaje = 'Hola, quiero comprar los siguientes productos:\n';
+    carrito.forEach(p => {
+      mensaje += `- ${p.nombre}: $${p.precio}\n`;
+    });
+    mensaje += `Total: ${document.getElementById('total-price').textContent}`;
+
+    // Abre WhatsApp con el mensaje
+    const url = `https://wa.me/573115671324?text=${encodeURIComponent(mensaje)}`;
+    window.open(url, '_blank');
+  });
 </script>
 
 </body>
 </html>
-
-</body>
-</html>
-
-
-
-
-
-
-
-
-
-
-
-
