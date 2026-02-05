@@ -74,6 +74,44 @@ nav a {
   transform: scale(1.05);
 
 }
+<style>
+  .producto {
+    border: 1px solid #ddd;
+    padding: 15px;
+    border-radius: 8px;
+    text-align: center;
+    max-width: 300px;
+  }
+/* Imagen principal */
+  .img-principal {
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    transition: 0.3s;
+  }
+ /* Contenedor de miniaturas */
+  .contenedor-miniaturas {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 15px;
+  }
+
+  /* Estilo de cada miniatura */
+  .miniatura {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border: 2px solid #eee;
+    border-radius: 4px; cursor: pointer;
+    transition: 0.2s;
+  }
+
+  .miniatura:hover {
+    border-color: #ff4d4d; /* Cambia al color de tu marca */
+  }
+</style>
 
 
 
