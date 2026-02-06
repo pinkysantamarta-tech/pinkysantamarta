@@ -306,10 +306,21 @@ function comprar() {
 }
 
 actualizar();
+  // Evento para eliminar productos
+  document.getElementById('cart-items').addEventListener('click', e => {
+    if (e.target.classList.contains('eliminar-item')) {
+      const index = parseInt(e.target.getAttribute('data-index'));
+      carrito.splice(index, 1);
+      actualizarCarrito();
+    }
+  });
+
+
 </script>
 
 </body>
 </html>
+
 
 
 
