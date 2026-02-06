@@ -13,6 +13,12 @@ header {
   padding: 30px;
 }
 
+header h1 {
+  font-family: 'Pacifico', cursive;
+  font-size: 48px;
+  letter-spacing: 1px;
+}
+
 nav {
   background: #e91e63;
   text-align: center;
@@ -145,6 +151,7 @@ nav a {
   font-size: 14px;
   margin-left: 6px;
 }
+
 
 
 
