@@ -47,8 +47,7 @@ body { font-family: Arial; margin:0 }
   <!-- PRODUCTO 1 -->
     <div class="producto">
       <img src="img/Huevo-Vibrador.jpg" alt="Huevo Vibrador">
-      </a>
-      <h3>Huevo Vibrador</h3>
+       <h3>Huevo Vibrador</h3>
       <p>Huevo vibrador a control remoto.</p>
       <p class="precio">$79.900</p>
       <a class="btn-agregar" data-nombre="Huevo Vibrador" data-precio="79.900">🛒 Agregar al Carrito</a>
@@ -57,8 +56,7 @@ body { font-family: Arial; margin:0 }
     <!-- PRODUCTO 2 -->
     <div class="producto">
       <img src="img/Mini-Dildo-Archer.png" alt="Mini Dildo Archer">
-      </a>
-      <h3>Mini Dildo Archer</h3>
+           <h3>Mini Dildo Archer</h3>
       <p>Mini Dildo Archer 4.5".</p>
       <p class="precio">$28.000</p>
      <a class="btn-agregar" data-nombre="Mini Dildo Archer" data-precio="28000">🛒 Agregar al Carrito</a>
@@ -67,8 +65,7 @@ body { font-family: Arial; margin:0 }
 <!-- PRODUCTO 3 -->
     <div class="producto">
       <img src="img/aceite-corporal.jpg" alt="Aceite Corporal">
-      </a>
-      <h3>Aceite corporal</h3>
+           <h3>Aceite corporal</h3>
       <p>Aceite corporal relajante y aromático.</p>
       <p class="precio">$17.900</p>
      <a class="btn-agregar" data-nombre="Aceite corporal" data-precio="17900">🛒 Agregar al Carrito</a>
@@ -77,8 +74,7 @@ body { font-family: Arial; margin:0 }
     <!-- PRODUCTO 4 -->
     <div class="producto">
       <img src="img/Perfume-Pheromona-Hombre-Roll-On-x10.jpg" alt="Perfume Pheromona Hombre">
-      </a>
-      <h3>Perfume Pheromona Hombre Roll On x10</h3>
+          <h3>Perfume Pheromona Hombre Roll On x10</h3>
       <p>Perfume con feromonas presentación roll on.</p>
       <p class="precio">$39.900</p>
       
@@ -92,8 +88,7 @@ body { font-family: Arial; margin:0 }
     <!-- PRODUCTO 5 -->
     <div class="producto">
       <img src="img/splash-sen-intimo.jpg" alt="Splah Sen Intimo">
-      </a>
-      <h3>Splash sen intimo</h3>
+         <h3>Splash sen intimo</h3>
       <p>Splash X 125 mL Sen Intimo.</p>
       <p class="precio">$29.900</p>
        <a class="btn-agregar"data-nombre="Splash X 125 mL Sen Intimo" data-precio="29900">🛒 Agregar al Carrito</a>
@@ -102,8 +97,7 @@ body { font-family: Arial; margin:0 }
 <!-- PRODUCTO 6 -->
     <div class="producto">
       <img src="img/brillo-labial-sen-intimo.jpg" alt="brillo labial sen intimo">
-      </a>
-      <h3>Brillo labial sen intimo</h3>
+           <h3>Brillo labial sen intimo</h3>
       <p>Brillo Labial X 20 Ml Frutos Rojos Sen Intimo.</p>
       <p class="precio">$26.500</p>
      
@@ -113,8 +107,7 @@ body { font-family: Arial; margin:0 }
     <!-- PRODUCTO 7 -->
     <div class="producto">
       <img src="img/Anillo-Vibrador-Pleasuring-Pink.jpg" alt="Anillo Vibrador Pleasuring Pink">
-      </a>
-      <h3>Anillo Vibrador Pleasuring Pink</h3>
+           <h3>Anillo Vibrador Pleasuring Pink</h3>
       <p>Anillo Vibrador Pleasuring Pink.</p>
       <p class="precio">$9.900</p>
      
@@ -125,8 +118,7 @@ body { font-family: Arial; margin:0 }
     <div class="producto">
         <!-- Imagen Grande -->
       <img id="img-8"class="img-principal" src="img/Vibrador-Dwarf-Bullet-1.jpg" alt="Vibrador Dwarf Bullet 1">
-    </a>
-      
+         
       <!-- Miniaturas -->
   <div class="contenedor-miniaturas">
     <img class="miniatura" 
@@ -151,8 +143,7 @@ body { font-family: Arial; margin:0 }
     <div class="producto">
   <!-- Imagen Grande -->
   <img id="img-9" class="img-principal" src="img/Vibrador-Power-Bullet-2-Egg.jpg" alt="Vibrador Power Bullet 2 Egg">
-    </a>
-
+   
   <!-- Miniaturas -->
   <div class="contenedor-miniaturas">
     <img class="miniatura" 
@@ -257,66 +248,99 @@ Lubricante-Neutro
 </div>
 </div>
 
+
 <script>
-let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+let carrito = {};
+const lista = document.getElementById("lista");
+const totalSpan = document.getElementById("total");
+const contador = document.getElementById("contador");
 
-function guardar() {
-  localStorage.setItem('carrito', JSON.stringify(carrito));
-}
+// Agregar productos
+document.querySelectorAll(".btn-agregar").forEach(btn => {
+  btn.addEventListener("click", () => {
+    const nombre = btn.dataset.nombre;
+    const precio = parseInt(btn.dataset.precio);
 
-function actualizar() {
-  const lista = document.getElementById('lista');
-  lista.innerHTML = '';
-  let total = 0;
-  let count = 0;
+    if (carrito[nombre]) {
+      carrito[nombre].cantidad++;
+    } else {
+      carrito[nombre] = { precio, cantidad: 1 };
+    }
 
-  carrito.forEach(p => {
-    total += p.precio * p.cantidad;
-    count += p.cantidad;
-    lista.innerHTML += `<li>${p.nombre} x${p.cantidad} - $${p.precio*p.cantidad}</li>`;
+    renderCarrito();
   });
-
-  document.getElementById('total').textContent = total;
-  document.getElementById('contador').textContent = count;
-  guardar();
-}
-
-document.addEventListener('click', e => {
-  if (e.target.classList.contains('btn-agregar')) {
-    const nombre = e.target.dataset.nombre;
-    const precio = parseInt(e.target.dataset.precio);
-    const item = carrito.find(p => p.nombre === nombre);
-    item ? item.cantidad++ : carrito.push({nombre, precio, cantidad:1});
-    actualizar();
-  }
 });
 
-function abrirCarrito() {
-  document.getElementById('modal').style.display='block';
-  actualizar();
+function renderCarrito() {
+  lista.innerHTML = "";
+  let total = 0;
+  let cantidadTotal = 0;
+
+  Object.keys(carrito).forEach(nombre => {
+    const item = carrito[nombre];
+    total += item.precio * item.cantidad;
+    cantidadTotal += item.cantidad;
+
+    lista.innerHTML += `
+      <li>
+        <strong>${nombre}</strong><br>
+        $${item.precio.toLocaleString()} x ${item.cantidad}
+        <br>
+        <button onclick="cambiarCantidad('${nombre}', -1)">−</button>
+        <button onclick="cambiarCantidad('${nombre}', 1)">+</button>
+        <button onclick="eliminarProducto('${nombre}')">❌</button>
+      </li>
+      <hr>
+    `;
+  });
+
+  totalSpan.textContent = total.toLocaleString();
+  contador.textContent = cantidadTotal;
 }
+
+function cambiarCantidad(nombre, cambio) {
+  carrito[nombre].cantidad += cambio;
+  if (carrito[nombre].cantidad <= 0) {
+    delete carrito[nombre];
+  }
+  renderCarrito();
+}
+
+function eliminarProducto(nombre) {
+  delete carrito[nombre];
+  renderCarrito();
+}
+
+function abrirCarrito() {
+  document.getElementById("modal").style.display = "block";
+}
+
 function cerrarCarrito() {
-  document.getElementById('modal').style.display='none';
+  document.getElementById("modal").style.display = "none";
 }
 
 function comprar() {
-  let msg = 'Hola, quiero comprar:\n';
-  carrito.forEach(p => msg += `- ${p.nombre} x${p.cantidad}\n`);
-  window.open(`https://wa.me/573115671324?text=${encodeURIComponent(msg)}`);
-}
+  if (Object.keys(carrito).length === 0) {
+    alert("Tu carrito está vacío");
+    return;
+  }
 
-actualizar();
-  // Evento para eliminar productos
-  document.getElementById('cart-items').addEventListener('click', e => {
-    if (e.target.classList.contains('eliminar-item')) {
-      const index = parseInt(e.target.getAttribute('data-index'));
-      carrito.splice(index, 1);
-      actualizarCarrito();
-    }
+  let mensaje = "Hola, quiero comprar:%0A";
+  let total = 0;
+
+  Object.keys(carrito).forEach(nombre => {
+    const item = carrito[nombre];
+    mensaje += `• ${nombre} x${item.cantidad} = $${item.precio * item.cantidad}%0A`;
+    total += item.precio * item.cantidad;
   });
 
+  mensaje += `%0ATotal: $${total}`;
 
+  window.open(`https://wa.me/573115671324?text=${mensaje}`, "_blank");
+}
 </script>
+
+
 
 </body>
 </html>
