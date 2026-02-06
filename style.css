@@ -135,13 +135,34 @@ nav a {
   position: fixed;
   top: 20px;
   right: 20px;
+
+  width: 55px;
+  height: 55px;
+
   background: #e91e63;
   color: white;
-  padding: 18px 22px;
+
   border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
   cursor: pointer;
-  font-size: 26px;
-  z-index: 1000;
+  font-size: 22px;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.3);
+  z-index: 9999;
+}
+
+/* Contador */
+.carrito-float span {
+  position: absolute;
+  top: -6px;
+  right: -6px;
+  background: black;
+  color: white;
+  font-size: 12px;
+  padding: 3px 6px;
+  border-radius: 50%;
 }
 
 .carrito-float span {
@@ -151,6 +172,7 @@ nav a {
   font-size: 14px;
   margin-left: 6px;
 }
+
 
 
 
