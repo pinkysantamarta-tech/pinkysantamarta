@@ -5,8 +5,11 @@
 <title>Pinky Santa Marta | Sex Shop</title>
 <link rel="stylesheet" href="style.css">
 <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+<style>
+  /* TODO TU CSS AQUÍ */
+</style>
 </head>
-
+  
 <style>
 body { font-family: Arial; margin:0 }
 .catalogo { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:15px; padding:20px }
@@ -48,29 +51,26 @@ body { font-family: Arial; margin:0 }
 
   <!-- PRODUCTO 1 -->
     <div class="producto">
-      <img src="img/Huevo-Vibrador.jpg" alt="Huevo Vibrador">
-      alt="Huevo Vibrador"
-      data-stock="0"
-   onclick="abrirModal({
-  nombre: 'Huevo Vibrador',
-  imagen: 'img/Huevo-Vibrador.jpg',
-  descripcion: 'Huevo vibrador inalámbrico con múltiples modos.',
-  caracteristicas: [
-    'Control remoto',
-    'Silencioso',
-    'Resistente al agua'
-  ],
-  especificaciones: [
-    'Material: Silicona médica',
-    'Batería recargable USB',
-    'modos de vibración'
-  ]
-})"
+      <img src="img/Huevo-Vibrador.jpg" 
+        alt="Huevo Vibrador">
+        data-stock="0"
+  onclick="abrirModal({
+    nombre:'Huevo Vibrador',
+    imagen:'img/Huevo-Vibrador.jpg',
+    descripcion:'Huevo vibrador inalámbrico con múltiples modos.',
+    caracteristicas:['Control remoto','Silencioso','Resistente al agua'],
+    especificaciones:['Material: Silicona médica','Batería recargable USB']
+  })"
 />
       <h3>Huevo Vibrador</h3>
       <p>Huevo vibrador a control remoto.</p>
       <p class="precio">$79.900</p>
-          <a class="btn-agregar" data-nombre="Huevo Vibrador" data-precio="79.900">🛒 Agregar al Carrito</a>
+          <a class="btn-agregar" 
+            data-nombre="Huevo Vibrador" 
+            data-precio="79.900"
+             data-stock="0">
+            🛒 Agregar al Carrito
+          </a>
 </div>
     
     <!-- PRODUCTO 2 -->
@@ -146,12 +146,12 @@ body { font-family: Arial; margin:0 }
   <div class="contenedor-miniaturas">
     <img class="miniatura" 
         src="img/Vibrador-Dwarf-Bullet-2.jpg" 
-      <img <img onclick="cambiarImagen('img-8', 'img/Vibrador-Dwarf-Bullet-2.jpg')" 
+      onclick="cambiarImagen('img-8', 'img/Vibrador-Dwarf-Bullet-2.jpg')" 
          alt="Vista 1">
     
       <img class="miniatura" 
          src="img/Vibrador-Dwarf-Bullet-3.jpg" 
-       <img <img onclick="cambiarImagen('img-8', 'img/Vibrador-Dwarf-Bullet-3.jpg')" 
+        onclick="cambiarImagen('img-8', 'img/Vibrador-Dwarf-Bullet-3.jpg')" 
          alt="Vista 2">
   </div>
 
@@ -171,12 +171,12 @@ body { font-family: Arial; margin:0 }
   <div class="contenedor-miniaturas">
     <img class="miniatura" 
          src="img/Vibrador-Power-Bullet-2-Egg.jpg" 
-         <img <img onclick="cambiarImagen('img-9', 'img/Vibrador-Power-Bullet-2-Egg.jpg')" 
+         onclick="cambiarImagen('img-9', 'img/Vibrador-Power-Bullet-2-Egg.jpg')" 
          alt="Vista 1">
     
     <img class="miniatura" 
          src="img/Vibrador-Power-Bullet-2-Egg-1.jpg" 
-       <img <img onclick="cambiarImagen('img-9', 'img/Vibrador-Power-Bullet-2-Egg-1.jpg')" 
+       onclick="cambiarImagen('img-9', 'img/Vibrador-Power-Bullet-2-Egg-1.jpg')" 
          alt="Vista 2">
   </div>
 
@@ -196,7 +196,7 @@ body { font-family: Arial; margin:0 }
   <div class="contenedor-miniaturas">
     <img class="miniatura" 
          src="img/Lubricante-Intimo-Estrechante-sen-intimo-2.jpg" 
-         <img onclick="cambiarImagen('img-10', 'Lubricante-Intimo-Estrechante-sen-intimo.jpg')" 
+          onclick="cambiarImagen('img-10', 'Lubricante-Intimo-Estrechante-sen-intimo.jpg')" 
          alt="Vista 1">
       </div>
 
@@ -341,6 +341,9 @@ body { font-family: Arial; margin:0 }
 <button onclick="cerrarCarrito()">Cerrar</button>
 </div>
 </div>
+  
+  <script>
+
 function abrirModal(producto) {
   document.getElementById("modalProducto").style.display = "block";
 
@@ -366,7 +369,8 @@ function abrirModal(producto) {
 function cerrarModal() {
   document.getElementById("modalProducto").style.display = "none";
 }
-<script>
+
+
 function abrirDesdeData(img){
   const producto = JSON.parse(img.dataset.producto);
   abrirModal(producto);
@@ -497,6 +501,7 @@ render();
 
 </body>
 </html>
+
 
 
 
