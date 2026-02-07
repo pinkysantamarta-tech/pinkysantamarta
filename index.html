@@ -273,8 +273,7 @@ cursor:pointer
   <p class="precio">$44.900</p>
 
   <a class="btn-agregar"
-     data-id="20"
-     data-nombre="Retardante Dynamo Ultra Spray x 15 ml"
+    data-nombre="Retardante Dynamo Ultra Spray x 15 ml"
      data-precio="44900"
      data-stock="6">
      🛒 Agregar al Carrito
@@ -302,7 +301,9 @@ cursor:pointer
 </section>
 
 <div class="carrito-float">🛒 <span id="contador">0</span></div>
-
+<div class="carrito-float" onclick="abrirCarrito()">
+  🛒 <span id="contador">0</span>
+</div>
 <div id="modalProducto">
 <div class="modal-contenido">
 <span class="cerrar" onclick="cerrarModal()">×</span>
@@ -311,113 +312,109 @@ cursor:pointer
 <p id="modalDescripcion"></p>
 <ul id="modalCaracteristicas"></ul>
 <ul id="modalEspecificaciones"></ul>
+  <ul id="lista"></ul>
+<span id="contador">0</span>
+<span id="total">0</span>
 </div>
 </div>
 
 <script>
-let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
-let stock = {
-  p9: 5, p10: 5, p11: 5, p12: 5, p13: 5, p14: 5, p15: 5,
-  p16: 5, p17: 5, p18: 5, p19: 5, p20: 5, p21: 5, p22: 5
-};
+let carrito = {};
+let stocks = {};
 
-/* ABRIR / CERRAR CARRITO */
-function toggleCarrito() {
-  document.getElementById("carrito").classList.toggle("activo");
-}
+// Inicializar productos
+document.querySelectorAll(".btn-agregar").forEach(btn => {
+  const nombre = btn.dataset.nombre;
+  const precio = parseInt(btn.dataset.precio);
+  const stockInicial = parseInt(btn.dataset.stock);
 
-/* GUARDAR */
-function guardarCarrito() {
-  localStorage.setItem("carrito", JSON.stringify(carrito));
-}
+  stocks[nombre] = stockInicial;
 
-/* AGREGAR */
-function agregar(id, nombre, precio) {
-  if (stock[id] <= 0) return;
+  btn.addEventListener("click", () => {
+    if (stocks[nombre] <= 0) return;
 
-  let item = carrito.find(p => p.id === id);
-  if (item) {
-    if (item.cantidad < stock[id]) item.cantidad++;
-  } else {
-    carrito.push({ id, nombre, precio, cantidad: 1 });
+    carrito[nombre] = carrito[nombre]
+      ? { precio, cantidad: carrito[nombre].cantidad + 1 }
+      : { precio, cantidad: 1 };
+
+    stocks[nombre]--;
+    renderCarrito();
+  });
+});
+
+function renderCarrito() {
+  const lista = document.getElementById("lista");
+  const totalSpan = document.getElementById("total");
+  const contador = document.getElementById("contador");
+
+  lista.innerHTML = "";
+  let total = 0;
+  let cant = 0;
+
+  for (let nombre in carrito) {
+    const item = carrito[nombre];
+    total += item.precio * item.cantidad;
+    cant += item.cantidad;
+
+    lista.innerHTML += `
+      <li>
+        ${nombre} x ${item.cantidad}
+        <button onclick="sumar('${nombre}')">+</button>
+        <button onclick="restar('${nombre}')">−</button>
+      </li>
+    `;
   }
 
-  guardarCarrito();
-  renderCarrito();
-}
+  totalSpan.textContent = total.toLocaleString();
+  contador.textContent = cant;
 
-/* RENDER */
-function renderCarrito() {
-  let contenedor = document.getElementById("items");
-  contenedor.innerHTML = "";
-  let total = 0;
-
-  carrito.forEach(p => {
-    total += p.precio * p.cantidad;
-
-    contenedor.innerHTML += `
-      <div class="item-carrito">
-        <span>${p.nombre} x${p.cantidad}</span>
-        <div class="controles">
-          <button onclick="cambiar('${p.id}', -1)">−</button>
-          <button onclick="cambiar('${p.id}', 1)">+</button>
-          <button onclick="eliminar('${p.id}')">✕</button>
-        </div>
-      </div>`;
+  document.querySelectorAll(".btn-agregar").forEach(btn => {
+    const n = btn.dataset.nombre;
+    if (stocks[n] <= 0) {
+      btn.classList.add("agotado");
+      btn.textContent = "AGOTADO";
+    }
   });
-
-  document.getElementById("total").innerText = total.toLocaleString();
 }
 
-/* CAMBIAR CANTIDAD */
-function cambiar(id, cambio) {
-  let item = carrito.find(p => p.id === id);
-  if (!item) return;
-
-  item.cantidad += cambio;
-
-  if (item.cantidad <= 0) eliminar(id);
-
-  guardarCarrito();
+function sumar(nombre) {
+  if (stocks[nombre] <= 0) return;
+  carrito[nombre].cantidad++;
+  stocks[nombre]--;
   renderCarrito();
 }
 
-/* ELIMINAR */
-function eliminar(id) {
-  carrito = carrito.filter(p => p.id !== id);
-  guardarCarrito();
+function restar(nombre) {
+  carrito[nombre].cantidad--;
+  stocks[nombre]++;
+  if (carrito[nombre].cantidad <= 0) delete carrito[nombre];
   renderCarrito();
 }
 
-/* MODAL */
-function abrirModal(img, titulo, desc) {
-  document.getElementById("modal-img").src = img;
-  document.getElementById("modal-texto").innerText = `${titulo}\n\n${desc}`;
-  document.getElementById("modal").style.display = "flex";
+function abrirCarrito() {
+  document.getElementById("modal").style.display = "block";
 }
 
-function cerrarModal() {
+function cerrarCarrito() {
   document.getElementById("modal").style.display = "none";
 }
 
-/* WHATSAPP */
-function enviarWhatsApp() {
-  if (carrito.length === 0) return;
+function comprar() {
+  let msg = "Hola, quiero comprar:%0A";
+  let total = 0;
 
-  let mensaje = "Pedido:%0A";
-  carrito.forEach(p => {
-    mensaje += `• ${p.nombre} x${p.cantidad}%0A`;
-  });
+  for (let n in carrito) {
+    msg += `• ${n} x${carrito[n].cantidad}%0A`;
+    total += carrito[n].precio * carrito[n].cantidad;
+  }
 
-  window.open(`https://wa.me/57TU_NUMERO?text=${mensaje}`, "_blank");
+  msg += `%0ATotal: $${total.toLocaleString()}`;
+  window.open(`https://wa.me/573115671324?text=${msg}`, "_blank");
 }
-
-/* CARGAR */
-renderCarrito();
-
 </script>
 
 </body>
 </html>
+
 
 
