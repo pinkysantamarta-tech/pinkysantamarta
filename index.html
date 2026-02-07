@@ -49,9 +49,25 @@ body { font-family: Arial; margin:0 }
   <!-- PRODUCTO 1 -->
     <div class="producto">
       <img src="img/Huevo-Vibrador.jpg" alt="Huevo Vibrador">
-       <h3>Huevo Vibrador</h3>
+   onclick="abrirModal({
+  nombre: 'Huevo Vibrador',
+  imagen: 'img/Huevo-Vibrador.jpg',
+  descripcion: 'Huevo vibrador inalámbrico con múltiples modos.',
+  caracteristicas: [
+    'Control remoto',
+    'Silencioso',
+    'Resistente al agua'
+  ],
+  especificaciones: [
+    'Material: Silicona médica',
+    'Batería recargable USB',
+    'modos de vibración'
+  ]
+})">
+      <h3>Huevo Vibrador</h3>
       <p>Huevo vibrador a control remoto.</p>
       <p class="precio">$79.900</p>
+      data-stock="0">
       <a class="btn-agregar" data-nombre="Huevo Vibrador" data-precio="79.900">🛒 Agregar al Carrito</a>
 </div>
     
@@ -61,6 +77,7 @@ body { font-family: Arial; margin:0 }
            <h3>Mini Dildo Archer</h3>
       <p>Mini Dildo Archer 4.5".</p>
       <p class="precio">$28.000</p>
+      data-stock="0">
      <a class="btn-agregar" data-nombre="Mini Dildo Archer" data-precio="28000">🛒 Agregar al Carrito</a>
 </div>
     
@@ -70,6 +87,7 @@ body { font-family: Arial; margin:0 }
            <h3>Aceite corporal</h3>
       <p>Aceite corporal relajante y aromático.</p>
       <p class="precio">$17.900</p>
+      data-stock="0">
      <a class="btn-agregar" data-nombre="Aceite corporal" data-precio="17900">🛒 Agregar al Carrito</a>
 </div>
   
@@ -79,7 +97,7 @@ body { font-family: Arial; margin:0 }
           <h3>Perfume Pheromona Hombre Roll On x10</h3>
       <p>Perfume con feromonas presentación roll on.</p>
       <p class="precio">$39.900</p>
-      
+      data-stock="0">
        <a class="btn-agregar"
          data-nombre="Perfume Pheromona Hombre Roll On x10" 
          data-precio="39900">
@@ -93,6 +111,7 @@ body { font-family: Arial; margin:0 }
          <h3>Splash sen intimo</h3>
       <p>Splash X 125 mL Sen Intimo.</p>
       <p class="precio">$29.900</p>
+      data-stock="0">
        <a class="btn-agregar"data-nombre="Splash X 125 mL Sen Intimo" data-precio="29900">🛒 Agregar al Carrito</a>
     </div>
     
@@ -102,7 +121,7 @@ body { font-family: Arial; margin:0 }
            <h3>Brillo labial sen intimo</h3>
       <p>Brillo Labial X 20 Ml Frutos Rojos Sen Intimo.</p>
       <p class="precio">$26.500</p>
-     
+     data-stock="0">
          <a class="btn-agregar"data-nombre="Brillo Labial X 20 Ml Frutos Rojos Sen Intimo" data-precio="26500">🛒 Agregar al Carrito</a>
      </div>
 
@@ -112,7 +131,7 @@ body { font-family: Arial; margin:0 }
            <h3>Anillo Vibrador Pleasuring Pink</h3>
       <p>Anillo Vibrador Pleasuring Pink.</p>
       <p class="precio">$9.900</p>
-     
+     data-stock="0">
           <a class="btn-agregar"data-nombre="Anillo Vibrador Pleasuring Pink" data-precio="9900">🛒 Agregar al Carrito</a>
      </div>
     
@@ -137,7 +156,7 @@ body { font-family: Arial; margin:0 }
   <h3>Vibrador Dwarf Bullet Egg</h3>
   <p>Vibrador Dwarf Bullet Egg.</p>
       <p class="precio">$35.900</p>
-     
+     data-stock="0">
           <a class="btn-agregar" data-nombre="Vibrador Dwarf Bullet Egg" data-precio="35900">🛒 Agregar al Carrito</a>
      </div>
     
@@ -162,6 +181,7 @@ body { font-family: Arial; margin:0 }
   <h3>Vibrador Power Bullet 2 Egg</h3>
   <p>Vibrador Power Bullet 2 Egg.</p>
   <p class="precio"><strong>$64.900</strong></p>
+      data-stock="0">
     <a class="btn-agregar" data-nombre="Vibrador Power Bullet 2 Egg" data-precio="64900">🛒 Agregar al Carrito</a>
  </div>
     
@@ -181,6 +201,7 @@ body { font-family: Arial; margin:0 }
   <h3>Lubricante Íntimo Estrechante x 30 ml by Sen Íntimo</h3>
   <p>Lubricante Íntimo Estrechante x 30 ml by Sen Íntimo</p>
   <p class="precio"><strong>$36.900</strong></p>
+      data-stock="0">
     <a class="btn-agregar" data-nombre="Lubricante Íntimo Estrechante x 30 ml by Sen Íntimo" data-precio="36900">🛒 Agregar al Carrito</a>
      </div>
     
@@ -190,6 +211,7 @@ body { font-family: Arial; margin:0 }
       <h3>Lubricante Íntimo Neutro x 250 ml by Sen Íntimo</h3>
       <p>Lubricante Íntimo Neutro x 250 ml by Sen Íntimo.</p>
       <p class="precio">$38.000</p>
+      data-stock="0">
      <a class="btn-agregar" data-nombre="Lubricante Íntimo Neutro x 250 ml by Sen Íntimo" data-precio="38000">🛒 Agregar al Carrito</a>
 </div>
 
@@ -199,6 +221,7 @@ body { font-family: Arial; margin:0 }
       <h3>Lubricante Íntimo Multiorgasmos Sachet x 7 ml by Sen Íntimo</h3>
       <p>Lubricante Íntimo Multiorgasmos Sachet x 7 ml by Sen Íntimo.</p>
       <p class="precio">$10.000</p>
+      data-stock="0">
      <a class="btn-agregar" data-nombre="Lubricante Íntimo Multiorgasmos Sachet x 7 ml by Sen Íntimo" data-precio="10000">🛒 Agregar al Carrito</a>
 </div>
     
@@ -208,6 +231,7 @@ body { font-family: Arial; margin:0 }
       <h3>Lubricante Íntimo Híbrido x 30 ml by Sen Íntimo</h3>
       <p>Lubricante Íntimo Híbrido x 30 ml by Sen Íntimo.</p>
       <p class="precio">$29.900</p>
+      data-stock="0">
      <a class="btn-agregar" data-nombre="Lubricante Íntimo Híbrido x 30 ml by Sen Íntimo" data-precio="29900">🛒 Agregar al Carrito</a>
 </div>    
     
@@ -217,6 +241,7 @@ body { font-family: Arial; margin:0 }
       <h3>Lubricante Íntimo Multiorgasmos x 30 ml by Sen Íntimo</h3>
       <p>Lubricante Íntimo Multiorgasmos x 30 ml by Sen Íntimo</p>
       <p class="precio">$36.900</p>
+      data-stock="0">
      <a class="btn-agregar" data-nombre="Lubricante Íntimo Multiorgasmos x 30 ml by Sen Íntimo" data-precio="36900">🛒 Agregar al Carrito</a>
 </div>    
     
@@ -226,6 +251,7 @@ body { font-family: Arial; margin:0 }
       <h3>Lubricante Neutro x 30 ml by Sen Ìntimo</h3>
       <p>Lubricante Neutro x 30 ml by Sen Ìntimo</p>
       <p class="precio">$25.900</p>
+      data-stock="0">
      <a class="btn-agregar" data-nombre="Lubricante Neutro x 30 ml by Sen Ìntimo" data-precio="25900">🛒 Agregar al Carrito</a>
 </div>    
 
@@ -236,6 +262,7 @@ body { font-family: Arial; margin:0 }
       <h3>Lubricante Íntimo Anal Desensibilizante en Sachet x 7 ml by Sen Íntimo</h3>
       <p>Lubricante Íntimo Anal Desensibilizante en Sachet x 7 ml by Sen Íntimo</p>
       <p class="precio">$9.900</p>
+      data-stock="0">
      <a class="btn-agregar" data-nombre="Lubricante Íntimo Anal Desensibilizante en Sachet x 7 ml by Sen Íntimo" data-precio="9900">🛒 Agregar al Carrito</a>
 </div>    
    <!-- PRODUCTO 17 -->
@@ -244,6 +271,7 @@ body { font-family: Arial; margin:0 }
       <h3>Lubricante Íntimo Anal Electrizante Sachet x 7 ml by Sen Íntimo </h3>
       <p>Lubricante Íntimo Anal Electrizante Sachet x 7 ml by Sen Íntimo </p>
       <p class="precio">$12.900</p>
+      data-stock="0">
      <a class="btn-agregar" data-nombre="Lubricante Íntimo Anal Electrizante Sachet x 7 ml by Sen Íntimo " data-precio="12900">🛒 Agregar al Carrito</a>
 </div>    
    <!-- PRODUCTO 18 -->
@@ -252,6 +280,7 @@ body { font-family: Arial; margin:0 }
       <h3>Lubricante Íntimo Anal Electrizante x 30 ml by Sen Íntimo</h3>
       <p>Lubricante Íntimo Anal Electrizante x 30 ml by Sen Íntimo</p>
       <p class="precio">$39.900</p>
+      data-stock="0">
      <a class="btn-agregar" data-nombre="Lubricante Íntimo Anal Electrizante x 30 ml by Sen Íntimo" data-precio="39900">🛒 Agregar al Carrito</a>
 </div>    
    <!-- PRODUCTO 19 -->
@@ -260,6 +289,7 @@ body { font-family: Arial; margin:0 }
       <h3>Lubricante Íntimo Anal Desensibilizante x 30 ml by Sen Intimo</h3>
       <p>Lubricante Íntimo Anal Desensibilizante x 30 ml by Sen Intimo</p>
       <p class="precio">$38.900</p>
+      data-stock="0">
      <a class="btn-agregar" data-nombre="Lubricante Íntimo Anal Desensibilizante x 30 ml by Sen Intimo" data-precio="38900">🛒 Agregar al Carrito</a>
 </div>    
   <!-- PRODUCTO 20 -->
@@ -268,6 +298,7 @@ body { font-family: Arial; margin:0 }
       <h3>Retardante Dynamo Ultra Spray x 15 ml by Black Power</h3>
       <p>Retardante Dynamo Ultra Spray x 15 ml by Black Power</p>
       <p class="precio">$44.900</p>
+      data-stock="0">
      <a class="btn-agregar" data-nombre="Retardante Dynamo Ultra Spray x 15 ml by Black Power" data-precio="44900">🛒 Agregar al Carrito</a>
 </div>    
   <!-- PRODUCTO 21 -->
@@ -276,6 +307,7 @@ body { font-family: Arial; margin:0 }
       <h3>Retardante Stud Spray x 15 ml Black Power</h3>
       <p>Retardante Stud Spray x 15 ml Black Power</p>
       <p class="precio">$39.900</p>
+      data-stock="0">
      <a class="btn-agregar" data-nombre="Retardante Stud Spray x 15 ml Black Power" data-precio="39900">🛒 Agregar al Carrito</a>
 </div>    
   <!-- PRODUCTO 22 -->
@@ -284,6 +316,7 @@ body { font-family: Arial; margin:0 }
       <h3>Q Volta G Sobre X 15 Gr</h3>
       <p>Q Volta G Sobre X 15 Grr</p>
       <p class="precio">$11.900</p>
+       data-stock="0">
      <a class="btn-agregar" data-nombre="Q Volta G Sobre X 15 Gr" data-precio="11900">🛒 Agregar al Carrito</a>
 </div>    
 
@@ -306,103 +339,158 @@ body { font-family: Arial; margin:0 }
 <button onclick="cerrarCarrito()">Cerrar</button>
 </div>
 </div>
+function abrirModal(producto) {
+  document.getElementById("modalProducto").style.display = "block";
 
+  document.getElementById("modalImagen").src = producto.imagen;
+  document.getElementById("modalTitulo").innerText = producto.nombre;
+  document.getElementById("modalDescripcion").innerText = producto.descripcion;
 
+  const car = document.getElementById("modalCaracteristicas");
+  const esp = document.getElementById("modalEspecificaciones");
+
+  car.innerHTML = "";
+  esp.innerHTML = "";
+
+  producto.caracteristicas.forEach(c => {
+    car.innerHTML += `<li>${c}</li>`;
+  });
+
+  producto.especificaciones.forEach(e => {
+    esp.innerHTML += `<li>${e}</li>`;
+  });
+}
+
+function cerrarModal() {
+  document.getElementById("modalProducto").style.display = "none";
+}
 <script>
-let carrito = {};
-const lista = document.getElementById("lista");
-const totalSpan = document.getElementById("total");
-const contador = document.getElementById("contador");
+let carrito = JSON.parse(localStorage.getItem("carrito")) || {};
+let stocks = JSON.parse(localStorage.getItem("stocks")) || {};
 
-// Agregar productos
+// Inicializar stock
 document.querySelectorAll(".btn-agregar").forEach(btn => {
+  const nombre = btn.dataset.nombre;
+  const stockInicial = parseInt(btn.dataset.stock);
+
+  if (!(nombre in stocks)) stocks[nombre] = stockInicial;
+
   btn.addEventListener("click", () => {
-    const nombre = btn.dataset.nombre;
-    const precio = parseInt(btn.dataset.precio);
+    if (stocks[nombre] <= 0) return;
 
-    if (carrito[nombre]) {
-      carrito[nombre].cantidad++;
-    } else {
-      carrito[nombre] = { precio, cantidad: 1 };
-    }
+    carrito[nombre] = carrito[nombre]
+      ? { ...carrito[nombre], cantidad: carrito[nombre].cantidad + 1 }
+      : { precio: parseInt(btn.dataset.precio), cantidad: 1 };
 
-    renderCarrito();
+    stocks[nombre]--;
+    guardar();
+    render();
   });
 });
 
-function renderCarrito() {
+function render() {
+  const lista = document.getElementById("lista");
+  const totalSpan = document.getElementById("total");
+  const contador = document.getElementById("contador");
+
   lista.innerHTML = "";
   let total = 0;
-  let cantidadTotal = 0;
+  let cant = 0;
 
   Object.keys(carrito).forEach(nombre => {
     const item = carrito[nombre];
     total += item.precio * item.cantidad;
-    cantidadTotal += item.cantidad;
+    cant += item.cantidad;
 
     lista.innerHTML += `
       <li>
-        <strong>${nombre}</strong><br>
-        $${item.precio.toLocaleString()} x ${item.cantidad}
-        <br>
-        <button onclick="cambiarCantidad('${nombre}', -1)">−</button>
-        <button onclick="cambiarCantidad('${nombre}', 1)">+</button>
-        <button onclick="eliminarProducto('${nombre}')">❌</button>
+        ${nombre} x${item.cantidad}
+        <button onclick="mod('${nombre}',1)">+</button>
+        <button onclick="mod('${nombre}',-1)">−</button>
+        <button onclick="del('${nombre}')">❌</button>
       </li>
-      <hr>
     `;
   });
 
   totalSpan.textContent = total.toLocaleString();
-  contador.textContent = cantidadTotal;
+  contador.textContent = cant;
+
+  // Bloquear botones agotados
+  document.querySelectorAll(".btn-agregar").forEach(btn => {
+    const n = btn.dataset.nombre;
+    if (stocks[n] <= 0) {
+      btn.classList.add("agotado");
+      btn.textContent = "AGOTADO";
+    }
+  });
 }
 
-function cambiarCantidad(nombre, cambio) {
+function mod(nombre, cambio) {
+  if (cambio > 0 && stocks[nombre] <= 0) return;
+
   carrito[nombre].cantidad += cambio;
+  stocks[nombre] -= cambio;
+
   if (carrito[nombre].cantidad <= 0) {
     delete carrito[nombre];
   }
-  renderCarrito();
+
+  guardar();
+  render();
 }
 
-function eliminarProducto(nombre) {
+function del(nombre) {
+  stocks[nombre] += carrito[nombre].cantidad;
   delete carrito[nombre];
-  renderCarrito();
+  guardar();
+  render();
 }
 
-function abrirCarrito() {
-  document.getElementById("modal").style.display = "block";
+function guardar() {
+  localStorage.setItem("carrito", JSON.stringify(carrito));
+  localStorage.setItem("stocks", JSON.stringify(stocks));
 }
 
-function cerrarCarrito() {
-  document.getElementById("modal").style.display = "none";
-}
-
+// WhatsApp
 function comprar() {
-  if (Object.keys(carrito).length === 0) {
-    alert("Tu carrito está vacío");
-    return;
-  }
+  if (!Object.keys(carrito).length) return alert("Carrito vacío");
 
-  let mensaje = "Hola, quiero comprar:%0A";
+  let msg = "Hola, quiero comprar:%0A";
   let total = 0;
 
-  Object.keys(carrito).forEach(nombre => {
-    const item = carrito[nombre];
-    mensaje += `• ${nombre} x${item.cantidad} = $${item.precio * item.cantidad}%0A`;
-    total += item.precio * item.cantidad;
+  Object.keys(carrito).forEach(n => {
+    const i = carrito[n];
+    msg += `• ${n} x${i.cantidad} = $${i.precio * i.cantidad}%0A`;
+    total += i.precio * i.cantidad;
   });
 
-  mensaje += `%0ATotal: $${total}`;
-
-  window.open(`https://wa.me/573115671324?text=${mensaje}`, "_blank");
+  msg += `%0ATotal: $${total}`;
+  window.open(`https://wa.me/573115671324?text=${msg}`, "_blank");
 }
+
+render();
 </script>
+<!-- MODAL PRODUCTO -->
+<div id="modalProducto" class="modal">
+  <div class="modal-contenido">
+    <span class="cerrar" onclick="cerrarModal()">&times;</span>
 
+    <img id="modalImagen" src="" alt="Producto">
 
+    <h2 id="modalTitulo"></h2>
+    <p id="modalDescripcion"></p>
+
+    <h4>Características</h4>
+    <ul id="modalCaracteristicas"></ul>
+
+    <h4>Especificaciones</h4>
+    <ul id="modalEspecificaciones"></ul>
+  </div>
+</div>
 
 </body>
 </html>
+
 
 
 
