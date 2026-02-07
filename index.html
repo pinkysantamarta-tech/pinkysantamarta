@@ -337,145 +337,70 @@ body { font-family: Arial; margin:0 }
 </div>
   
   <script>
-
-function abrirModal(producto) {
-  document.getElementById("modalProducto").style.display = "block";
-
-  document.getElementById("modalImagen").src = producto.imagen;
-  document.getElementById("modalTitulo").innerText = producto.nombre;
-  document.getElementById("modalDescripcion").innerText = producto.descripcion;
-
-  const car = document.getElementById("modalCaracteristicas");
-  const esp = document.getElementById("modalEspecificaciones");
-
-  car.innerHTML = "";
-  esp.innerHTML = "";
-
-  producto.caracteristicas.forEach(c => {
-    car.innerHTML += `<li>${c}</li>`;
-  });
-
-  producto.especificaciones.forEach(e => {
-    esp.innerHTML += `<li>${e}</li>`;
-  });
-}
-
-function cerrarModal() {
-  document.getElementById("modalProducto").style.display = "none";
-}
-
-
-function abrirDesdeData(img){
-  const producto = JSON.parse(img.dataset.producto);
-  abrirModal(producto);
-}
-  
-  let carrito = JSON.parse(localStorage.getItem("carrito")) || {};
+let carrito = JSON.parse(localStorage.getItem("carrito")) || {};
 let stocks = JSON.parse(localStorage.getItem("stocks")) || {};
 
-// Inicializar stock
+// Inicializar stock desde HTML
 document.querySelectorAll(".btn-agregar").forEach(btn => {
-  const nombre = btn.dataset.nombre;
- const stockInicial = btn.dataset.stock 
-  ? parseInt(btn.dataset.stock) 
-  : 10; // 👈 STOCK POR DEFECTO
-  if (!(nombre in stocks)) stocks[nombre] = stockInicial;
+  const id = btn.dataset.id;
+  const stockHTML = parseInt(btn.dataset.stock);
 
+  if (!stocks[id]) {
+    stocks[id] = stockHTML;
+  }
+
+  if (stocks[id] <= 0) {
+    btn.textContent = "❌ Agotado";
+    btn.classList.add("agotado");
+  }
+});
+
+// Guardar stock inicial
+localStorage.setItem("stocks", JSON.stringify(stocks));
+
+function actualizarContador() {
+  let total = 0;
+  for (let id in carrito) {
+    total += carrito[id].cantidad;
+  }
+  const contador = document.getElementById("contador-carrito");
+  if (contador) contador.textContent = total;
+}
+
+document.querySelectorAll(".btn-agregar").forEach(btn => {
   btn.addEventListener("click", () => {
-    if (stocks[nombre] <= 0) return;
+    const id = btn.dataset.id;
+    const nombre = btn.dataset.nombre;
+    const precio = parseInt(btn.dataset.precio);
 
-    carrito[nombre] = carrito[nombre]
-      ? { ...carrito[nombre], cantidad: carrito[nombre].cantidad + 1 }
-      : { precio: parseInt(btn.dataset.precio), cantidad: 1 };
+    if (stocks[id] <= 0) {
+      btn.textContent = "❌ Agotado";
+      btn.classList.add("agotado");
+      return;
+    }
 
-    stocks[nombre]--;
-    guardar();
-    render();
+    if (!carrito[id]) {
+      carrito[id] = { nombre, precio, cantidad: 0 };
+    }
+
+    carrito[id].cantidad++;
+    stocks[id]--;
+
+    if (stocks[id] <= 0) {
+      btn.textContent = "❌ Agotado";
+      btn.classList.add("agotado");
+    }
+
+    localStorage.setItem("carrito", JSON.stringify(carrito));
+    localStorage.setItem("stocks", JSON.stringify(stocks));
+
+    actualizarContador();
   });
 });
 
-function render() {
-  const lista = document.getElementById("lista");
-  const totalSpan = document.getElementById("total");
-  const contador = document.getElementById("contador");
-
-  lista.innerHTML = "";
-  let total = 0;
-  let cant = 0;
-
-  Object.keys(carrito).forEach(nombre => {
-    const item = carrito[nombre];
-    total += item.precio * item.cantidad;
-    cant += item.cantidad;
-
-    lista.innerHTML += `
-      <li>
-        ${nombre} x${item.cantidad}
-        <button onclick="mod('${nombre}',1)">+</button>
-        <button onclick="mod('${nombre}',-1)">−</button>
-        <button onclick="del('${nombre}')">❌</button>
-      </li>
-    `;
-  });
-
-  totalSpan.textContent = total.toLocaleString();
-  contador.textContent = cant;
-
-  // Bloquear botones agotados
-  document.querySelectorAll(".btn-agregar").forEach(btn => {
-    const n = btn.dataset.nombre;
-    if (stocks[n] <= 0) {
-      btn.classList.add("agotado");
-      btn.textContent = "AGOTADO";
-    }
-  });
-}
-
-function mod(nombre, cambio) {
-  if (cambio > 0 && stocks[nombre] <= 0) return;
-
-  carrito[nombre].cantidad += cambio;
-  stocks[nombre] -= cambio;
-
-  if (carrito[nombre].cantidad <= 0) {
-    delete carrito[nombre];
-  }
-
-  guardar();
-  render();
-}
-
-function del(nombre) {
-  stocks[nombre] += carrito[nombre].cantidad;
-  delete carrito[nombre];
-  guardar();
-  render();
-}
-
-function guardar() {
-  localStorage.setItem("carrito", JSON.stringify(carrito));
-  localStorage.setItem("stocks", JSON.stringify(stocks));
-}
-
-// WhatsApp
-function comprar() {
-  if (!Object.keys(carrito).length) return alert("Carrito vacío");
-
-  let msg = "Hola, quiero comprar:%0A";
-  let total = 0;
-
-  Object.keys(carrito).forEach(n => {
-    const i = carrito[n];
-    msg += `• ${n} x${i.cantidad} = $${i.precio * i.cantidad}%0A`;
-    total += i.precio * i.cantidad;
-  });
-
-  msg += `%0ATotal: $${total}`;
-  window.open(`https://wa.me/573115671324?text=${msg}`, "_blank");
-}
-
-render();
+actualizarContador();
 </script>
+  
 <!-- MODAL PRODUCTO -->
 <div id="modalProducto" class="modal">
   <div class="modal-contenido">
@@ -496,6 +421,7 @@ render();
 
 </body>
 </html>
+
 
 
 
