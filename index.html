@@ -49,6 +49,8 @@ body { font-family: Arial; margin:0 }
   <!-- PRODUCTO 1 -->
     <div class="producto">
       <img src="img/Huevo-Vibrador.jpg" alt="Huevo Vibrador">
+      alt="Huevo Vibrador"
+      data-stock="0"
    onclick="abrirModal({
   nombre: 'Huevo Vibrador',
   imagen: 'img/Huevo-Vibrador.jpg',
@@ -63,12 +65,12 @@ body { font-family: Arial; margin:0 }
     'Batería recargable USB',
     'modos de vibración'
   ]
-})">
+})"
+/>
       <h3>Huevo Vibrador</h3>
       <p>Huevo vibrador a control remoto.</p>
       <p class="precio">$79.900</p>
-      data-stock="0">
-      <a class="btn-agregar" data-nombre="Huevo Vibrador" data-precio="79.900">🛒 Agregar al Carrito</a>
+          <a class="btn-agregar" data-nombre="Huevo Vibrador" data-precio="79.900">🛒 Agregar al Carrito</a>
 </div>
     
     <!-- PRODUCTO 2 -->
@@ -365,7 +367,12 @@ function cerrarModal() {
   document.getElementById("modalProducto").style.display = "none";
 }
 <script>
-let carrito = JSON.parse(localStorage.getItem("carrito")) || {};
+function abrirDesdeData(img){
+  const producto = JSON.parse(img.dataset.producto);
+  abrirModal(producto);
+}
+  
+  let carrito = JSON.parse(localStorage.getItem("carrito")) || {};
 let stocks = JSON.parse(localStorage.getItem("stocks")) || {};
 
 // Inicializar stock
@@ -490,6 +497,7 @@ render();
 
 </body>
 </html>
+
 
 
 
