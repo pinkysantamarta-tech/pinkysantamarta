@@ -337,68 +337,160 @@ body { font-family: Arial; margin:0 }
 </div>
   
   <script>
+// =====================
+// VARIABLES PRINCIPALES
+// =====================
 let carrito = JSON.parse(localStorage.getItem("carrito")) || {};
 let stocks = JSON.parse(localStorage.getItem("stocks")) || {};
 
-// Inicializar stock desde HTML
+// =====================
+// INICIALIZAR STOCK
+// =====================
 document.querySelectorAll(".btn-agregar").forEach(btn => {
-  const id = btn.dataset.id;
-  const stockHTML = parseInt(btn.dataset.stock);
+  const nombre = btn.dataset.nombre;
+  const precio = parseInt(btn.dataset.precio);
+  const stockInicial = parseInt(btn.dataset.stock || 5); // 👈 stock por defecto
 
-  if (!stocks[id]) {
-    stocks[id] = stockHTML;
+  // Si no existe, lo crea
+  if (!(nombre in stocks)) {
+    stocks[nombre] = stockInicial;
   }
 
-  if (stocks[id] <= 0) {
-    btn.textContent = "❌ Agotado";
-    btn.classList.add("agotado");
-  }
-});
-
-// Guardar stock inicial
-localStorage.setItem("stocks", JSON.stringify(stocks));
-
-function actualizarContador() {
-  let total = 0;
-  for (let id in carrito) {
-    total += carrito[id].cantidad;
-  }
-  const contador = document.getElementById("contador-carrito");
-  if (contador) contador.textContent = total;
-}
-
-document.querySelectorAll(".btn-agregar").forEach(btn => {
+  // CLICK AGREGAR
   btn.addEventListener("click", () => {
-    const id = btn.dataset.id;
-    const nombre = btn.dataset.nombre;
-    const precio = parseInt(btn.dataset.precio);
+    if (stocks[nombre] <= 0) return;
 
-    if (stocks[id] <= 0) {
-      btn.textContent = "❌ Agotado";
-      btn.classList.add("agotado");
-      return;
+    if (!carrito[nombre]) {
+      carrito[nombre] = { precio, cantidad: 1 };
+    } else {
+      carrito[nombre].cantidad++;
     }
 
-    if (!carrito[id]) {
-      carrito[id] = { nombre, precio, cantidad: 0 };
-    }
-
-    carrito[id].cantidad++;
-    stocks[id]--;
-
-    if (stocks[id] <= 0) {
-      btn.textContent = "❌ Agotado";
-      btn.classList.add("agotado");
-    }
-
-    localStorage.setItem("carrito", JSON.stringify(carrito));
-    localStorage.setItem("stocks", JSON.stringify(stocks));
-
-    actualizarContador();
+    stocks[nombre]--;
+    guardar();
+    render();
   });
 });
 
-actualizarContador();
+// =====================
+// RENDERIZAR CARRITO
+// =====================
+function render() {
+  const lista = document.getElementById("lista");
+  const totalSpan = document.getElementById("total");
+  const contador = document.getElementById("contador");
+
+  lista.innerHTML = "";
+  let total = 0;
+  let cantidadTotal = 0;
+
+  for (let nombre in carrito) {
+    const item = carrito[nombre];
+    total += item.precio * item.cantidad;
+    cantidadTotal += item.cantidad;
+
+    lista.innerHTML += `
+      <li>
+        ${nombre} x${item.cantidad}
+        <button onclick="modificar('${nombre}', 1)">+</button>
+        <button onclick="modificar('${nombre}', -1)">−</button>
+        <button onclick="eliminar('${nombre}')">❌</button>
+      </li>
+    `;
+  }
+
+  totalSpan.textContent = total.toLocaleString("es-CO");
+  contador.textContent = cantidadTotal;
+
+  // Estado de botones
+  document.querySelectorAll(".btn-agregar").forEach(btn => {
+    const nombre = btn.dataset.nombre;
+
+    if (stocks[nombre] <= 0) {
+      btn.textContent = "AGOTADO";
+      btn.style.background = "#999";
+      btn.style.pointerEvents = "none";
+    } else {
+      btn.textContent = "🛒 Agregar al Carrito";
+      btn.style.background = "#e91e63";
+      btn.style.pointerEvents = "auto";
+    }
+  });
+}
+
+// =====================
+// MODIFICAR CANTIDAD
+// =====================
+function modificar(nombre, cambio) {
+  if (cambio > 0 && stocks[nombre] <= 0) return;
+
+  carrito[nombre].cantidad += cambio;
+  stocks[nombre] -= cambio;
+
+  if (carrito[nombre].cantidad <= 0) {
+    delete carrito[nombre];
+  }
+
+  guardar();
+  render();
+}
+
+// =====================
+// ELIMINAR PRODUCTO
+// =====================
+function eliminar(nombre) {
+  stocks[nombre] += carrito[nombre].cantidad;
+  delete carrito[nombre];
+  guardar();
+  render();
+}
+
+// =====================
+// GUARDAR STORAGE
+// =====================
+function guardar() {
+  localStorage.setItem("carrito", JSON.stringify(carrito));
+  localStorage.setItem("stocks", JSON.stringify(stocks));
+}
+
+// =====================
+// ABRIR / CERRAR CARRITO
+// =====================
+function abrirCarrito() {
+  document.getElementById("modal").style.display = "block";
+}
+
+function cerrarCarrito() {
+  document.getElementById("modal").style.display = "none";
+}
+
+// =====================
+// WHATSAPP
+// =====================
+function comprar() {
+  if (!Object.keys(carrito).length) {
+    alert("El carrito está vacío");
+    return;
+  }
+
+  let mensaje = "Hola, quiero comprar:%0A";
+  let total = 0;
+
+  for (let nombre in carrito) {
+    const item = carrito[nombre];
+    mensaje += `• ${nombre} x${item.cantidad} = $${item.precio * item.cantidad}%0A`;
+    total += item.precio * item.cantidad;
+  }
+
+  mensaje += `%0ATotal: $${total.toLocaleString("es-CO")}`;
+  window.open(`https://wa.me/573115671324?text=${mensaje}`, "_blank");
+}
+
+// =====================
+// INICIO
+// =====================
+render();
+</script>
 </script>
   
 <!-- MODAL PRODUCTO -->
@@ -421,6 +513,7 @@ actualizarContador();
 
 </body>
 </html>
+
 
 
 
