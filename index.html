@@ -376,8 +376,9 @@ let stocks = JSON.parse(localStorage.getItem("stocks")) || {};
 // Inicializar stock
 document.querySelectorAll(".btn-agregar").forEach(btn => {
   const nombre = btn.dataset.nombre;
-  const stockInicial = parseInt(btn.dataset.stock);
-
+ const stockInicial = btn.dataset.stock 
+  ? parseInt(btn.dataset.stock) 
+  : 10; // 👈 STOCK POR DEFECTO
   if (!(nombre in stocks)) stocks[nombre] = stockInicial;
 
   btn.addEventListener("click", () => {
@@ -495,6 +496,7 @@ render();
 
 </body>
 </html>
+
 
 
 
