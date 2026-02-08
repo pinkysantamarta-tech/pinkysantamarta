@@ -234,6 +234,95 @@ nav a {
   object-fit: contain;
   background: #fafafa;
 }
+/* =========================
+   CONTENEDOR DEL PRODUCTO
+========================= */
+.producto {
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 15px;
+  width: 240px;
+  text-align: center;
+  background: #fff;
+}
+
+/* =========================
+   IMAGEN DEL PRODUCTO
+========================= */
+.producto img {
+  width: 200px;
+  height: 200px;
+  object-fit: contain;
+  display: block;
+  margin: 0 auto 10px;
+}
+
+/* =========================
+   PRECIO
+========================= */
+.precio {
+  font-weight: bold;
+  font-size: 18px;
+  margin: 8px 0;
+  color: #222;
+}
+
+/* =========================
+   BOTÓN AGREGAR AL CARRITO
+========================= */
+.btn-agregar {
+  display: inline-block;
+  padding: 8px 14px;
+  background: #e91e63;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+  margin-top: 10px;
+  white-space: nowrap;      /* 🔴 evita que el botón se haga largo */
+  width: auto;              /* 🔴 evita 100% */
+}
+
+.btn-agregar:hover {
+  background: #c2185b;
+}
+
+/* =========================
+   GRID DE PRODUCTOS
+========================= */
+.contenedor-productos {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 20px;
+  justify-items: center;
+}
+
+/* =========================
+   CARRITO (RESUMEN)
+========================= */
+#carrito {
+  max-height: 300px;        /* 🔽 altura máxima */
+  overflow-y: auto;         /* 🔽 barra de desplazamiento */
+  border: 1px solid #ddd;
+  padding: 10px;
+  border-radius: 8px;
+  background: #fafafa;
+}
+
+/* =========================
+   ITEM DEL CARRITO
+========================= */
+.item-carrito {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 8px;
+  font-size: 14px;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 5px;
+}
+
 
 
 
