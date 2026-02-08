@@ -323,6 +323,14 @@ nav a {
   padding-bottom: 5px;
 }
 
+/* 🔧 FIX DEFINITIVO BOTÓN LARGO */
+.btn-agregar {
+  display: inline-block !important;
+  width: auto !important;
+  padding: 10px 16px;
+  white-space: nowrap;
+}
+
 
 
 
