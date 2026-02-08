@@ -220,6 +220,21 @@ nav a {
 .carrito-panel.activo {
   right: 0;
 }
+.producto {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 420px;
+}
+.btn-agregar {
+  flex-shrink: 0;
+}
+.producto img {
+  min-height: 180px;
+  object-fit: contain;
+  background: #fafafa;
+}
+
 
 
 
