@@ -331,6 +331,17 @@ nav a {
   white-space: nowrap;
 }
 
+.producto {
+  align-items: center; /* 🔥 evita que los hijos se estiren */
+}
+.producto .btn-agregar {
+  display: inline-flex !important;
+  width: auto !important;
+  align-self: center; /* 🔥 clave */
+  padding: 10px 18px;
+  white-space: nowrap;
+}
+
 
 
 
