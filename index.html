@@ -536,7 +536,46 @@ function comprar() {
 // INICIO
 // =====================
 render();
+// ==========================
+// MODAL PRODUCTO
+// ==========================
 
+document.querySelectorAll(".imagen-producto").forEach(img => {
+  img.addEventListener("click", function(){
+
+    document.getElementById("modalProducto").style.display = "block";
+    document.getElementById("modalImagen").src = this.src;
+    document.getElementById("modalTitulo").textContent = this.dataset.nombre;
+    document.getElementById("modalDescripcion").textContent = this.dataset.descripcion;
+
+    // Características
+    let listaCar = document.getElementById("modalCaracteristicas");
+    listaCar.innerHTML = "";
+    this.dataset.caracteristicas.split(",").forEach(item=>{
+      listaCar.innerHTML += `<li>${item}</li>`;
+    });
+
+    // Especificaciones
+    let listaEsp = document.getElementById("modalEspecificaciones");
+    listaEsp.innerHTML = "";
+    this.dataset.especificaciones.split(",").forEach(item=>{
+      listaEsp.innerHTML += `<li>${item}</li>`;
+    });
+
+  });
+});
+
+function cerrarModal(){
+  document.getElementById("modalProducto").style.display = "none";
+}
+
+// Cerrar al hacer click fuera
+window.onclick = function(e){
+  const modal = document.getElementById("modalProducto");
+  if(e.target == modal){
+    modal.style.display = "none";
+  }
+}
 </script>
   // =====================
 // ABRIR MODAL PRODUCTO
@@ -597,6 +636,7 @@ window.addEventListener("click", function(e){
 
 </body>
 </html>
+
 
 
 
