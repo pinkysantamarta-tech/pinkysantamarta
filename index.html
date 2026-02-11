@@ -536,9 +536,47 @@ function comprar() {
 // INICIO
 // =====================
 render();
+
 </script>
+  // =====================
+// ABRIR MODAL PRODUCTO
+// =====================
+document.querySelectorAll(".img-click").forEach(img => {
+  img.addEventListener("click", function() {
+    document.getElementById("modalProducto").style.display = "block";
+
+    document.getElementById("modalImagen").src = this.src;
+    document.getElementById("modalTitulo").textContent = this.dataset.titulo;
+    document.getElementById("modalDescripcion").textContent = this.dataset.descripcion;
+
+    // Características
+    let listaCar = document.getElementById("modalCaracteristicas");
+    listaCar.innerHTML = "";
+    this.dataset.caracteristicas.split(",").forEach(item => {
+      listaCar.innerHTML += `<li>${item.trim()}</li>`;
+    });
+
+    // Especificaciones
+    let listaEsp = document.getElementById("modalEspecificaciones");
+    listaEsp.innerHTML = "";
+    this.dataset.especificaciones.split(",").forEach(item => {
+      listaEsp.innerHTML += `<li>${item.trim()}</li>`;
+    });
+  });
+});
+
+// Cerrar modal
+function cerrarModal() {
+  document.getElementById("modalProducto").style.display = "none";
+}
+
+// Cerrar si clic afuera
+window.addEventListener("click", function(e){
+  if(e.target.id === "modalProducto"){
+    cerrarModal();
+  }
+});
 </script>
-  
 <!-- MODAL PRODUCTO -->
 <div id="modalProducto" class="modal">
   <div class="modal-contenido">
@@ -559,6 +597,7 @@ render();
 
 </body>
 </html>
+
 
 
 
