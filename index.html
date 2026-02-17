@@ -581,71 +581,10 @@ window.onclick = function(e){
   }
 }
 </script>
-  // =====================
-// ABRIR MODAL PRODUCTO
-// =====================
-document.querySelectorAll(".img-click").forEach(img => {
-  img.addEventListener("click", function() {
-    document.getElementById("modalProducto").style.display = "block";
 
-    document.getElementById("modalImagen").src = this.src;
-    document.getElementById("modalTitulo").textContent = this.dataset.titulo;
-    document.getElementById("modalDescripcion").textContent = this.dataset.descripcion;
-
-    // Características
-    let listaCar = document.getElementById("modalCaracteristicas");
-    listaCar.innerHTML = "";
-    this.dataset.caracteristicas.split(",").forEach(item => {
-      listaCar.innerHTML += `<li>${item.trim()}</li>`;
-    });
-
-    // Especificaciones
-    let listaEsp = document.getElementById("modalEspecificaciones");
-    listaEsp.innerHTML = "";
-    this.dataset.especificaciones.split(",").forEach(item => {
-      listaEsp.innerHTML += `<li>${item.trim()}</li>`;
-    });
-  });
-});
-
-// Cerrar modal
-function cerrarModal() {
-  document.getElementById("modalProducto").style.display = "none";
-}
-
-// Cerrar si clic afuera
-window.addEventListener("click", function(e){
-  if(e.target.id === "modalProducto"){
-    cerrarModal();
-  }
-});
-
-<!-- MODAL PRODUCTO -->
-<div id="modalProducto" class="modal">
-  <div class="modal-contenido">
-    <span class="cerrar" onclick="cerrarModal()">&times;</span>
-
-    <img id="modalImagen" src="" alt="Producto">
-
-    <h2 id="modalTitulo"></h2>
-    <p id="modalDescripcion"></p>
-
-    <h4>Características</h4>
-    <ul id="modalCaracteristicas"></ul>
-
-    <h4>Especificaciones</h4>
-    <ul id="modalEspecificaciones"></ul>
-  </div>
-</div>
-  function cambiarImagen(idImagen, nuevaRuta) {
-    var imagenPrincipal = document.getElementById(idImagen);
-    if (imagenPrincipal) {
-        imagenPrincipal.src = nuevaRuta;
-    }
-}
-</script>
 </body>
 </html>
+
 
 
 
