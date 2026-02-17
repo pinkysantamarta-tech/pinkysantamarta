@@ -385,16 +385,21 @@ body {
 }
 
 /* Contenedor del producto */
+/* ===== ZOOM REAL FUNCIONAL ===== */
+
 .producto {
   overflow: hidden;
 }
 
-/* Imagen principal */
-.img-principal {
-  width: 100%;
+.producto img {
   transition: transform 0.4s ease;
   cursor: zoom-in;
 }
+
+.producto img:hover {
+  transform: scale(1.25);
+}
+
 
 /* Efecto zoom */
 .producto:hover .img-principal {
