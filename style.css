@@ -406,5 +406,24 @@ body {
   transform: scale(1.2);
 }
 
+/* ===== CONTENEDOR ===== */
+.producto {
+  overflow: hidden;
+  position: relative;
+}
+
+/* ===== IMAGEN ===== */
+.producto img {
+  width: 200px;
+  height: 200px;
+  object-fit: contain;
+  transition: transform 0.4s ease;
+}
+
+/* ===== EFECTO ZOOM ===== */
+.producto img:hover {
+  transform: scale(1.5);
+}
+
 
 
