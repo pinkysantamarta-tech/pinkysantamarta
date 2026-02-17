@@ -637,9 +637,16 @@ window.addEventListener("click", function(e){
     <ul id="modalEspecificaciones"></ul>
   </div>
 </div>
+  function cambiarImagen(idImagen, nuevaRuta) {
+    var imagenPrincipal = document.getElementById(idImagen);
+    if (imagenPrincipal) {
+        imagenPrincipal.src = nuevaRuta;
+    }
+}
 </script>
 </body>
 </html>
+
 
 
 
