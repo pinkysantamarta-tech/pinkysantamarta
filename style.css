@@ -421,9 +421,30 @@ body {
 }
 
 /* ===== EFECTO ZOOM ===== */
-.producto img:hover {
-  transform: scale(1.5);
+.producto img:hover/* ===== PRODUCTO AGOTADO ===== */
+
+.producto.agotado {
+  opacity: 0.6;
+  position: relative;
 }
 
+.producto.agotado::after {
+  content: "AGOTADO";
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background: red;
+  color: white;
+  padding: 5px 10px;
+  font-weight: bold;
+  border-radius: 5px;
+}
 
-
+.producto.agotado .btn-agregar {
+  background: gray !important;
+  pointer-events: none;
+  cursor: not-allowed;
+}
+ {
+  transform: scale(1.5);
+}
